@@ -27,10 +27,10 @@ def checking_price(url, max_price):
     else:
         page.encoding = "utf-8"
         soup = BeautifulSoup(page.text, 'html.parser')
-        finding = soup.find('span', class_='price')
+        finding = soup.find('span', class_='price') # You need to find the name where price value is saved 
         if finding:
             price = finding.text
-            clean_price = float(price.replace("zł","").replace(",","."))
+            clean_price = float(price.replace("zł","").replace(",",".")) # you need to change the currency of your site
             print(f"Actual price: {clean_price}")
             if clean_price < max_price:
                 return True
@@ -41,7 +41,7 @@ def checking_price(url, max_price):
             print("No price element found on the website")
             return False
 while True:
-    sending = checking_price(URL, Max_price)
+    sending = checking_price(URL, Max_price) 
     if sending:
         print("I´m sending an email")
         email_message(to)

@@ -27,10 +27,10 @@ def checking_price(url, max_price):
     else:
         page.encoding = "utf-8"
         soup = BeautifulSoup(page.text, 'html.parser')
-        finding = soup.find('span', class_='price')
+        finding = soup.find('span', class_='price') # You need to find the name of veriable where price is saved, in this example is span 
         if finding:
             price = finding.text
-            clean_price = float(price.replace("zł","").replace(",","."))
+            clean_price = float(price.replace("zł","").replace(",",".")) # You need to also change currency if you want to use othe sites, in this example is zł
             print(f"Actual price: {clean_price}")
             if clean_price < max_price:
                 return True
